@@ -1,0 +1,44 @@
+CREATE SCHEMA `db_agenda` DEFAULT CHARACTER SET latin1 ;
+
+/*-------------------------------------------------------------------------------------------*/
+
+CREATE TABLE `db_agenda`.`tbl_usuario` (
+  `cod_usuario` INT NOT NULL AUTO_INCREMENT,
+  `txt_login` VARCHAR(45) NULL,
+  `txt_senha` VARCHAR(45) NOT NULL,
+  `st_ativo` TINYINT(1) NOT NULL DEFAULT 1 COMMENT 'TABELA DE USUÁRIOS',
+  PRIMARY KEY (`cod_usuario`),
+  UNIQUE INDEX `txt_login_UNIQUE` (`txt_login` ASC));
+
+/*-------------------------------------------------------------------------------------------*/
+
+INSERT INTO tbl_usuario(txt_login, txt_senha) VALUES('administrador', '1234');
+
+/*-------------------------------------------------------------------------------------------*/
+
+CREATE TABLE `db_agenda`.`tbl_cliente` (
+  `cod_cliente` INT NOT NULL AUTO_INCREMENT,
+  `txt_cliente` VARCHAR(255) NOT NULL,
+  `txt_telefone` VARCHAR(45) NOT NULL,
+  `txt_telefone2` VARCHAR(45) NULL,
+  `txt_instagram` VARCHAR(2000) NULL,
+  `cod_cidade` INT NOT NULL,
+  `txt_endereco` VARCHAR(4000) NOT NULL,
+  `txt_complemento` VARCHAR(4000) NULL,
+  `txt_descricao` VARCHAR(4000) NULL,
+  PRIMARY KEY (`cod_cliente`));
+  
+/*-------------------------------------------------------------------------------------------*/
+
+CREATE TABLE `db_agenda`.`tbl_pais` (
+  `cod_pais` INT NOT NULL AUTO_INCREMENT,
+  `txt_pais` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`cod_pais`),
+  UNIQUE INDEX `txt_pais_UNIQUE` (`txt_pais` ASC));  
+  
+  /*-------------------------------------------------------------------------------------------*/
+  
+  INSERT INTO tbl_pais(txt_pais) VALUES('BRASIL');
+  
+  /*-------------------------------------------------------------------------------------------*/
+  

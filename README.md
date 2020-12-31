@@ -1,2 +1,2 @@
 # AgendaContatos
-Agenda para contatos pessoais
+Agenda para contatos pessoais. Projeto C# MVC, ORM: Entity Framework, banco MySQL.
