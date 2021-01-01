@@ -66,7 +66,7 @@ namespace Web.MVC.Controllers
                 db.Clientes.Add(Mapper.Map<Cliente>(model));
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
 
             return View(model);
@@ -130,9 +130,17 @@ namespace Web.MVC.Controllers
 
                 db.Entry(Mapper.Map<Cliente>(model)).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
             return View(model);
+        }
+
+        public JsonResult Delete(string id)
+        {
+            db.Clientes.Remove(db.Clientes.Find(Convert.ToInt32(id)));
+            db.SaveChanges();            
+
+            return Json("", JsonRequestBehavior.AllowGet);
         }
     }
 }

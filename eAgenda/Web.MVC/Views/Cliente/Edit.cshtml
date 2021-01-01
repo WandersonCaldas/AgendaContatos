@@ -14,7 +14,7 @@
         </button>
     </div>
 </div>
-@using (Html.BeginForm("Edit", "Cliente", new { }, FormMethod.Post, new { }))
+@using (Ajax.BeginForm("Edit", "Cliente", new AjaxOptions { HttpMethod = "POST" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(false, "", new { @class = "text-danger" })
@@ -73,8 +73,10 @@
     <!-- /.card-footer-->
 }
 
-<script type="text/javascript">
-    $(document).ready(function ($) {
+<script type="text/javascript">    
+    $(document).ajaxStart($.blockUI({ message: '<h1>...</h1>' })).ajaxStop($.unblockUI);
+
+    $(document).ready(function ($) {       
         $('#cod_estado').select2();
         $('#cod_cidade').select2();
 
@@ -82,8 +84,7 @@
             type: "GET",
             url: "http://apilogradouro.caldasti.com.br/api/estados",
             contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            async: false,
+            dataType: "json",            
             success: function (response) {
                 if (response != null) {
                     var selectbox = $('#cod_estado');
@@ -97,8 +98,7 @@
                         type: "GET",
                         url: "http://apilogradouro.caldasti.com.br/api/municipios/" + @Model.cod_cidade,
                         contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        async: false,
+                        dataType: "json",                        
                         success: function (response2) {
                             if (response2 != null) {
                                 $.each(response2, function (j, y) {
@@ -133,8 +133,7 @@
                 type: "GET",
                 url: "http://apilogradouro.caldasti.com.br/api/municipiosestado/" + cod_estado,
                 contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                async: false,
+                dataType: "json",                
                 success: function (response) {
                     if (response != null) {
                         var selectbox = $('#cod_cidade');

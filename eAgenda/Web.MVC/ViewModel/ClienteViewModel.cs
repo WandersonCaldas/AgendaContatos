@@ -50,5 +50,35 @@ namespace Web.MVC.ViewModel
         public string txt_descricao { get; set; }
 
         public Result result { get; set; }
+
+        public string telefone_formatado
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(this.txt_telefone))
+                {
+                    return "";
+                }
+                else
+                {
+                    return Convert.ToUInt64(this.txt_telefone).ToString(@"(00) 00000-0000");
+                }
+            }
+        }
+
+        public string telefone2_formatado
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(this.txt_telefone2))
+                {
+                    return "";
+                }
+                else
+                {
+                    return Convert.ToUInt64(this.txt_telefone2).ToString(@"(00) 00000-0000");
+                }
+            }
+        }
     }
 }
